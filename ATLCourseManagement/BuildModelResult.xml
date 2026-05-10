@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Diagnostics
+  GenerationTime="2026-05-09T04:14:34.7425446+00:00">
+  <Items>
+    <Diagnostic>
+      <DiagnosticType>ExternalReference</DiagnosticType>
+      <Severity>Warning</Severity>
+      <Path>dynamics://Reference/Microsoft.Dynamics___vices.PricingEngine</Path>
+      <Moniker>AssemblyFileNotFound</Moniker>
+      <Message>Assembly 'Microsoft.Dynamics.Commerce.Runtime.Entities.AttributeBasedPricing, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' failed to load because it was not found.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/ATLCourseTable</Path>
+      <ElementType>Table</ElementType>
+      <Moniker>UnderlyingFieldTypeNotFound</Moniker>
+      <Line>1</Line>
+      <Column>14</Column>
+      <EndLine>1</EndLine>
+      <EndColumn>28</EndColumn>
+      <Message>The underlying type 'GroupId ' or its base type for table 'ATLCourseTable' field 'CourseId' does not exist.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Table/ATLCourseTable/Method/validateWrite</Path>
+      <ElementType>Table Method</ElementType>
+      <Moniker>TypeNotFound</Moniker>
+      <Line>28</Line>
+      <Column>20</Column>
+      <EndLine>28</EndLine>
+      <EndColumn>24</EndColumn>
+      <Message>The name 'GroupId' does not denote a class, a table, or an extended data type.</Message>
+    </Diagnostic>
+    <Diagnostic>
+      <DiagnosticType>Metadata</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>AxTable/ATLCourseTable/Fields/CourseId/ExtendedDataType</Path>
+      <Moniker>EdtDoesNotExist</Moniker>
+      <Message>Extended data type 'GroupId' does not exist.</Message>
+    </Diagnostic>
+  </Items>
+  <Aliases />
+</Diagnostics>

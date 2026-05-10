@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<z:anyType xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns=""
+	i:type="AxFormPropertyCollection" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+	<Methods>
+		<Method>
+			<Name>classDeclaration</Name>
+			<ReturnType />
+		</Method>
+	</Methods>
+	<DataSources />
+	<DataControls>
+		<Control>
+			<Name>btnOpenDetails</Name>
+			<Type>MenuFunctionButton</Type>
+			<Methods>
+				<Method>
+					<Name>clicked</Name>
+					<Visibility>Public</Visibility>
+					<ReturnType>
+						<TypeName></TypeName>
+					</ReturnType>
+					<Variables>
+						<AxMethodVariable>
+							<Type>Record</Type>
+							<TypeName>ATLCourseTable</TypeName>
+							<Name>selectedCourse</Name>
+						</AxMethodVariable>
+						<AxMethodVariable>
+							<Type>Class</Type>
+							<TypeName>Args</TypeName>
+							<Name>args</Name>
+						</AxMethodVariable>
+					</Variables>
+				</Method>
+			</Methods>
+		</Control>
+	</DataControls>
+	<Members />
+</z:anyType>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>ATLCourseExpirationBatch</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class ATLCourseExpirationBatch extends RunBaseBatch
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>run</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Executa o job de expiração de cursos.
+    /// </summary>
+    public void run()
+    {
+        int counter;
+        
+        counter = ATLCourseService::disableExpiredCourses();
+        
+        info(strFmt("%1 curso(s) desabilitado(s) por vencimento.", counter));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>main</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Ponto de entrada do batch.
+    /// </summary>
+    public static void main(Args _args)
+    {
+        ATLCourseExpirationBatch batch = new ATLCourseExpirationBatch();
+    
+        if (batch.prompt())
+        {
+            batch.runOperation();
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>canRunInNewSession</Name>
+				<Source><![CDATA[
+    protected boolean canRunInNewSession()
+    {
+        return false;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>caption</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Descrição exibida na tela de agendamento do batch.
+    /// </summary>
+    public ClassDescription caption()
+    {
+        return "Expiração Automática de Cursos ATL";
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

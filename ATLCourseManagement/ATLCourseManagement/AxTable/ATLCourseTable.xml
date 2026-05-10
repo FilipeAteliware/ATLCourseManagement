@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxTable xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>ATLCourseTable</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+public class ATLCourseTable extends common
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>shouldThrowExceptionOnZeroDelete</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Determines if concurrent deletes should throw exception.
+    /// </summary>
+    /// <returns>true, if exception should be thrown; otherwise, false.</returns>
+    public boolean shouldThrowExceptionOnZeroDelete()
+    {
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateWrite</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Validates the record before it is written.
+    /// Ensures CourseId is not empty and Name has at least 3 characters.
+    /// </summary>
+    /// <returns>true if validation succeeds; otherwise false.</returns>
+    public boolean validateWrite()
+    {
+        boolean ret;
+
+        ret = super();
+
+        if (!ret)
+        {
+            return false;
+        }
+
+        if (strLen(this.CourseId) == 0)
+        {
+            error("@ATLCourseManagement:CourseIdRequired");
+            return false;
+        }
+
+        if (strLen(this.Name) < 3)
+        {
+            error(strFmt("@ATLCourseManagement:CourseNameMinLength", 3));
+            return false;
+        }
+
+        return true;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>modifiedField</Name>
+				<Source><![CDATA[
+    public void modifiedField(FieldId _fieldId)
+    {
+        super(_fieldId);
+        switch (_fieldId)
+        {
+            case fieldNum(ATLCourseTable, IsEnabled):
+                if (this.IsEnabled == NoYes::No)
+                {
+                    ATLCourseParticipant participant;
+                    update_recordset participant
+                    setting IsActive = NoYes::No
+                    where participant.CourseId == this.CourseId;
+                }
+                else if (this.IsEnabled == NoYes::Yes)
+                {
+                    ATLCourseParticipant participant;
+                    update_recordset participant
+                    setting IsActive = NoYes::Yes
+                    where participant.CourseId == this.CourseId;
+                }
+                break;
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateField</Name>
+				<Source><![CDATA[
+    public boolean validateField(FieldId _fieldId)
+    {
+        boolean ret = super(_fieldId);
+    
+        if (_fieldId == fieldNum(ATLCourseTable, IsEnabled))
+        {
+            if (this.IsEnabled == NoYes::No)
+            {
+                ATLCourseParticipant participant;
+                select firstonly participant
+                where participant.CourseId == this.CourseId;
+                
+                if (participant.RecId != 0)
+                {
+                    if (!Box::yesNo(
+                    strFmt("@ATLCourseManagement:CourseDisableConfirm", this.Name),
+                    DialogButton::No))
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+    
+        return ret;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>initValue</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Initializes default values for a new ATLCourseTable record.
+    /// Sets IsEnabled to Yes so new courses are active by default.
+    /// </summary>
+    public void initValue()
+    {
+        super();
+        this.IsEnabled = NoYes::Yes;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+	<DeveloperDocumentation>@ATLCourseManagement:CourseTableLabel</DeveloperDocumentation>
+	<Label>@ATLCourseManagement:CourseTableLabel</Label>
+	<SubscriberAccessLevel>
+		<Read>Allow</Read>
+	</SubscriberAccessLevel>
+	<TitleField1>CourseId</TitleField1>
+	<TitleField2>Name</TitleField2>
+	<AllowRowVersionChangeTracking>Yes</AllowRowVersionChangeTracking>
+	<ClusteredIndex>CourseIdx</ClusteredIndex>
+	<CreatedBy>Yes</CreatedBy>
+	<CreatedDateTime>Yes</CreatedDateTime>
+	<ModifiedBy>Yes</ModifiedBy>
+	<ModifiedDateTime>Yes</ModifiedDateTime>
+	<PrimaryIndex>CourseIdx</PrimaryIndex>
+	<ReplacementKey>CourseIdx</ReplacementKey>
+	<DeleteActions />
+	<FieldGroups>
+		<AxTableFieldGroup>
+			<Name>AutoReport</Name>
+			<Label>@ATLCourseManagement:CourseTableLabel</Label>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>CourseId</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Name</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>IsEnabled</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>DateStart</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>DateEnd</DataField>
+				</AxTableFieldGroupField>
+				<AxTableFieldGroupField>
+					<DataField>Price</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoLookup</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoIdentification</Name>
+			<AutoPopulate>Yes</AutoPopulate>
+			<Fields>
+				<AxTableFieldGroupField>
+					<DataField>CourseId</DataField>
+				</AxTableFieldGroupField>
+			</Fields>
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoSummary</Name>
+			<Fields />
+		</AxTableFieldGroup>
+		<AxTableFieldGroup>
+			<Name>AutoBrowse</Name>
+			<Fields />
+		</AxTableFieldGroup>
+	</FieldGroups>
+	<Fields>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>CourseId</Name>
+			<AllowEdit>No</AllowEdit>
+			<ExtendedDataType>Name</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@ATLCourseManagement:CourseId</Label>
+			<Mandatory>Yes</Mandatory>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldString">
+			<Name>Name</Name>
+			<ExtendedDataType>Description</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@ATLCourseManagement:CourseName</Label>
+			<Mandatory>Yes</Mandatory>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldEnum">
+			<Name>IsEnabled</Name>
+			<Label>@ATLCourseManagement:CourseIsEnabled</Label>
+			<EnumType>NoYes</EnumType>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldDate">
+			<Name>DateStart</Name>
+			<ExtendedDataType>FromDate</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@ATLCourseManagement:CourseDateStart</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldDate">
+			<Name>DateEnd</Name>
+			<ExtendedDataType>ToDate</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@ATLCourseManagement:CourseDateEnd</Label>
+		</AxTableField>
+		<AxTableField xmlns=""
+			i:type="AxTableFieldReal">
+			<Name>Price</Name>
+			<ExtendedDataType>AmountCur</ExtendedDataType>
+			<IgnoreEDTRelation>Yes</IgnoreEDTRelation>
+			<Label>@ATLCourseManagement:CoursePrice</Label>
+		</AxTableField>
+	</Fields>
+	<FullTextIndexes />
+	<Indexes>
+		<AxTableIndex>
+			<Name>CourseIdx</Name>
+			<AlternateKey>Yes</AlternateKey>
+			<Fields>
+				<AxTableIndexField>
+					<DataField>CourseId</DataField>
+				</AxTableIndexField>
+			</Fields>
+		</AxTableIndex>
+	</Indexes>
+	<Mappings />
+	<Relations />
+	<StateMachines />
+</AxTable>

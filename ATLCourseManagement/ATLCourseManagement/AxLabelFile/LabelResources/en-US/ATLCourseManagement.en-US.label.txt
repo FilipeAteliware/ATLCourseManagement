@@ -1,0 +1,16 @@
+﻿CourseAvailable=Available Courses
+CourseDateEnd=End Date
+CourseDateStart=Start Date
+CourseDisableConfirm=Are you sure you want to disable course '%1'? This will remove all participants.
+CourseExpirationBatch=Expiração Automática de Cursos
+ ;Privilege para executar o batch de expiração de cursos
+CourseId=Course ID
+CourseIdRequired=Course Id Required
+CourseIsActive=Active Participant
+CourseIsEnabled=Active
+CourseName=Course Name
+CourseNameMinLength=Name must contain at least %1 characters.
+CourseParticipantLabel=Course Participants
+CourseParticipants=Participants
+CoursePrice=Price
+CourseTableLabel=Courses

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>ATLCourseService</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+internal final class ATLCourseService
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>disableCourse</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Desabilita um curso e inativa todos os seus participantes.
+    /// </summary>
+    /// <param name="_courseId">ID do curso a ser desabilitado.</param>
+    public static void disableCourse(str _courseId)
+    {
+        ATLCourseTable      course;
+        ATLCourseParticipant participant;
+
+        select forupdate course
+            where course.CourseId == _courseId;
+
+        if (!course.RecId)
+        {
+            throw error(strFmt("Curso '%1' não encontrado.", _courseId));
+        }
+
+        ttsbegin;
+
+        update_recordset participant
+            setting IsActive = NoYes::No
+            where participant.CourseId == _courseId;
+
+        course.IsEnabled = NoYes::No;
+        course.update();
+
+        ttscommit;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>disableExpiredCourses</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Desabilita todos os cursos com DateEnd vencida.
+    /// </summary>
+    /// <returns>Quantidade de cursos desabilitados.</returns>
+    public static int disableExpiredCourses()
+    {
+        ATLCourseTable  course;
+        int             counter = 0;
+
+        while select forupdate course
+            where course.IsEnabled == NoYes::Yes
+               && course.DateEnd < DateTimeUtil::getToday(DateTimeUtil::getUserPreferredTimeZone())
+               && course.DateEnd != dateNull()
+        {
+            ATLCourseService::disableCourse(course.CourseId);
+            counter++;
+            info(strFmt("Curso '%1' desabilitado por vencimento.", course.Name));
+        }
+
+        return counter;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

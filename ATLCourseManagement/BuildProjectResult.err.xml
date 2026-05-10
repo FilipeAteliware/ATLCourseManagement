@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Diagnostics
+  GenerationTime="2026-05-10T17:24:51.7458258+00:00">
+  <Items>
+    <Diagnostic>
+      <DiagnosticType>Compile</DiagnosticType>
+      <Severity>Error</Severity>
+      <Path>dynamics://Form/ATLCourseParticipantForm/Method/init</Path>
+      <ElementType>Form Method</ElementType>
+      <Moniker>ClassDoesNotContainMethod</Moniker>
+      <Line>13</Line>
+      <Column>13</Column>
+      <EndLine>13</EndLine>
+      <EndColumn>41</EndColumn>
+      <Message>ClassDoesNotContainMethod: Table 'ATLCourseParticipant' does not contain a definition for method 'query' and no extension method 'query' accepting a first argument of type 'ATLCourseParticipant' is found on any extension class.</Message>
+      <ItemSpecific>
+        <OriginatorType
+          alias="0">ClassDoesNotContainMethod</OriginatorType>
+        <Fields>
+          <elementTypeName>Table</elementTypeName>
+          <elementName>ATLCourseParticipant</elementName>
+          <methodName>query</methodName>
+        </Fields>
+      </ItemSpecific>
+    </Diagnostic>
+  </Items>
+  <Aliases>
+    <Alias
+      assembly="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2, Version=7.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+      ns="Microsoft.Dynamics.AX.Framework.Xlnt.XppParser.Pass2">0</Alias>
+  </Aliases>
+</Diagnostics>
