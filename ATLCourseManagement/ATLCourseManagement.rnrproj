@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <BuildTasksDirectory Condition=" '$(BuildTasksDirectory)' == ''">$(MSBuildProgramFiles32)\MSBuild\Microsoft\Dynamics\AX</BuildTasksDirectory>
+    <Model>ATLCourseManagement</Model>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OutputPath>bin</OutputPath>
+    <SchemaVersion>2.0</SchemaVersion>
+    <GenerateCrossReferences>True</GenerateCrossReferences>
+    <RunAppCheckerRules>False</RunAppCheckerRules>
+    <LogAppcheckerDiagsAsErrors>False</LogAppcheckerDiagsAsErrors>
+    <DeployOnline>False</DeployOnline>
+    <ProjectGuid>{af5baf38-176d-45c0-a18e-255662a97587}</ProjectGuid>
+    <Name>ATLCourseManagement</Name>
+    <RootNamespace>ATLCourseManagement</RootNamespace>
+    <StartupType>Form</StartupType>
+    <StartupObject>ATLCourseDetails</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Configuration>Debug</Configuration>
+    <DBSyncInBuild>True</DBSyncInBuild>
+    <GenerateFormAdaptors>False</GenerateFormAdaptors>
+    <Company>USMF</Company>
+    <Partition>initial</Partition>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DataEntityExpandParentChildRelations>False</DataEntityExpandParentChildRelations>
+    <DataEntityUseLabelTextAsFieldName>False</DataEntityUseLabelTextAsFieldName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Form" />
+    <Folder Include="Display Menu Item" />
+    <Folder Include="Extension Menu" />
+    <Folder Include="Class" />
+    <Folder Include="Action Menu Item" />
+    <Folder Include="Labels" />
+    <Folder Include="Security Privilege" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ATLCourseManagement.en-US.label.txt">
+      <SubType>Content</SubType>
+      <Name>ATLCourseManagement.en-US.label.txt</Name>
+      <DependentUpon>AxLabelFile\ATLCourseManagement_en-US</DependentUpon>
+    </Content>
+    <Content Include="AxClass\ATLCourseExpirationBatch">
+      <SubType>Content</SubType>
+      <Name>ATLCourseExpirationBatch</Name>
+      <Link>Class\ATLCourseExpirationBatch</Link>
+    </Content>
+    <Content Include="AxClass\ATLCourseService">
+      <SubType>Content</SubType>
+      <Name>ATLCourseService</Name>
+      <Link>Class\ATLCourseService</Link>
+    </Content>
+    <Content Include="AxForm\ATLCourseDetails">
+      <SubType>Content</SubType>
+      <Name>ATLCourseDetails</Name>
+      <Link>Form\ATLCourseDetails</Link>
+    </Content>
+    <Content Include="AxForm\ATLCourseParticipantForm">
+      <SubType>Content</SubType>
+      <Name>ATLCourseParticipantForm</Name>
+      <Link>Form\ATLCourseParticipantForm</Link>
+    </Content>
+    <Content Include="AxForm\ATLCourseTable">
+      <SubType>Content</SubType>
+      <Name>ATLCourseTable</Name>
+      <Link>Form\ATLCourseTable</Link>
+    </Content>
+    <Content Include="AxLabelFile\ATLCourseManagement_en-US">
+      <SubType>Content</SubType>
+      <Name>ATLCourseManagement_en-US</Name>
+      <Link>Labels\ATLCourseManagement_en-US</Link>
+    </Content>
+    <Content Include="AxMenuExtension\AccountsReceivable.ATLCourseManagement">
+      <SubType>Content</SubType>
+      <Name>AccountsReceivable.ATLCourseManagement</Name>
+      <Link>Extension Menu\AccountsReceivable.ATLCourseManagement</Link>
+    </Content>
+    <Content Include="AxMenuItemAction\ATLCourseExpirationBatch">
+      <SubType>Content</SubType>
+      <Name>ATLCourseExpirationBatch</Name>
+      <Link>Action Menu Item\ATLCourseExpirationBatch</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\ATLCourseDetails">
+      <SubType>Content</SubType>
+      <Name>ATLCourseDetails</Name>
+      <Link>Display Menu Item\ATLCourseDetails</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\ATLCourseParticipantForm">
+      <SubType>Content</SubType>
+      <Name>ATLCourseParticipantForm</Name>
+      <Link>Display Menu Item\ATLCourseParticipantForm</Link>
+    </Content>
+    <Content Include="AxMenuItemDisplay\ATLCourseTable">
+      <SubType>Content</SubType>
+      <Name>ATLCourseTable</Name>
+      <Link>Display Menu Item\ATLCourseTable</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\ATLCourseExpirationBatchMaintain">
+      <SubType>Content</SubType>
+      <Name>ATLCourseExpirationBatchMaintain</Name>
+      <Link>Security Privilege\ATLCourseExpirationBatchMaintain</Link>
+    </Content>
+    <Content Include="AxSecurityPrivilege\ATLCourseTableMaintain">
+      <SubType>Content</SubType>
+      <Name>ATLCourseTableMaintain</Name>
+      <Link>Security Privilege\ATLCourseTableMaintain</Link>
+    </Content>
+    <Content Include="AxTable\ATLCourseParticipant">
+      <SubType>Content</SubType>
+      <Name>ATLCourseParticipant</Name>
+      <Link>Tables\ATLCourseParticipant</Link>
+    </Content>
+    <Content Include="AxTable\ATLCourseTable">
+      <SubType>Content</SubType>
+      <Name>ATLCourseTable</Name>
+      <Link>Tables\ATLCourseTable</Link>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
+  <Import Project="$(BuildTasksDirectory)\Microsoft.Dynamics.Framework.Tools.BuildTasks.17.0.targets" />
+</Project>
